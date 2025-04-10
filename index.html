@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mailto Form</title>
+</head>
+<body>
+  <h2>Contact Form</h2>
+  <form id="contactForm">
+    <label for="name">Name:</label><br />
+    <input type="text" id="name" name="name" required /><br /><br />
+
+    <label for="email">Email:</label><br />
+    <input type="email" id="email" name="email" required /><br /><br />
+
+    <label for="address">Address:</label><br />
+    <textarea id="address" name="address" required></textarea><br /><br />
+
+    <button type="submit">Send Email</button>
+  </form>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent actual form submission
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const address = document.getElementById('address').value;
+
+      const subject = encodeURIComponent(`Contact Form Submission from ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nAddress:\n${address}`);
+
+      const mailtoLink = `mailto:youremail@example.com?subject=${subject}&body=${body}`;
+
+      window.location.href = mailtoLink;
+    });
+  </script>
+</body>
+</html>
