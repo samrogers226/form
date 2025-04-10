@@ -91,7 +91,7 @@
     </form>
 
     <div class="footer-note">
-      This will open Gmail in a new tab with a prefilled message. You can review and send it from there.
+      This will open your default email app with a prefilled message.
     </div>
   </div>
 
@@ -104,7 +104,6 @@
       const address = document.getElementById('address').value.trim();
 
       const subject = encodeURIComponent("Opposition to Conditional Use Permit Application for 81 S. Huntington");
-      const to = encodeURIComponent("citycouncil@example.com"); // Change this to the actual city email
 
       const body = encodeURIComponent(
 `To Whom It May Concern,
@@ -135,9 +134,9 @@ ${name}
 ${address}`
       );
 
-      const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${subject}&body=${body}`;
+      const mailtoLink = `mailto:citycouncil@example.com?subject=${subject}&body=${body}`;
 
-      window.open(gmailLink, '_blank');
+      window.location.href = mailtoLink;
     });
   </script>
 </body>
