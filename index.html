@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Opposition Email Form</title>
+  <title>Oppose Shelter at 81 S Huntington</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -21,7 +21,7 @@
     }
 
     h1 {
-      font-size: 22px;
+      font-size: 20px;
       margin-bottom: 20px;
       color: #333;
     }
@@ -91,7 +91,7 @@
     </form>
 
     <div class="footer-note">
-      This will open your email client with a prefilled message you can review before sending.
+      This will open Gmail in a new tab with a prefilled message. You can review and send it from there.
     </div>
   </div>
 
@@ -99,21 +99,45 @@
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const address = document.getElementById('address').value;
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const address = document.getElementById('address').value.trim();
 
-      const subject = encodeURIComponent(`Opposition to Shelter at 81 S Huntington`);
+      const subject = encodeURIComponent("Opposition to Conditional Use Permit Application for 81 S. Huntington");
+      const to = encodeURIComponent("citycouncil@example.com"); // Change this to the actual city email
+
       const body = encodeURIComponent(
-        `Dear City Officials,\n\n` +
-        `My name is ${name}, I live at ${address} and my email is ${email}.\n\n` +
-        `I am writing to voice my opposition to the proposed shelter at 81 S Huntington. I have serious concerns about the impact this project will have on our neighborhood.\n\n` +
-        `Sincerely,\n${name}`
+`To Whom It May Concern,
+
+My name is ${name} and I am a resident at ${address}. I am writing to express my strong opposition to the application for a Conditional Use Permit at 81 S. Huntington Avenue.
+
+Although the property is currently zoned for hotel use, it has been operating as a "low-threshold" homeless shelter since November 2021 without proper authorization. This unpermitted use has had a significant and harmful impact on the surrounding neighborhood.
+
+Since the shelter began operating, residents have observed a noticeable increase in litter, suspected drug activity, car break-ins, and violent incidents. Of particular concern is the surge in discarded needles in public areas. This creates an ongoing health and safety hazard for residents, including children and seniors. We have compiled data using 311 reports to illustrate this trend—within a ¼-mile radius of the property, needle pickup requests increased from 4 in 2019 to 44 in 2024.
+You can view the mapped data here: [INSERT MAP LINK]
+
+Approving this application after years of unauthorized use would set a dangerous precedent, effectively rewarding violations of zoning laws and encouraging others to disregard regulations until enforcement becomes unavoidable.
+
+Moreover, there are many potential uses for this property that would benefit the community rather than harm it. Whether restored to its intended hotel use or repurposed for housing, small business, or community-oriented services, the site could contribute positively to the neighborhood’s vitality—without introducing the negative impacts we’ve experienced over the past few years.
+
+According to Article 6, Section 3 of the City’s Zoning Code, a Conditional Use Permit may only be granted if specific conditions are met. In this case, the property clearly fails to satisfy the following:
+
+Condition (b): "The use will not adversely affect the neighborhood." This standard is not met. The surrounding area has experienced increased crime and a tragic fatal shooting directly outside the building since the shelter began operating.
+
+Condition (d): "No nuisance will be created by the use." In reality, residents continue to report persistent nuisances including public drug use, garbage thrown from windows, and a general sense of insecurity.
+
+Given these ongoing issues, we respectfully urge the Board of Appeals to deny this request. Upholding the zoning code is essential not only to preserve neighborhood stability, but also to encourage responsible development that meets community needs.
+
+Thank you for your time and attention to this matter.
+
+Sincerely,
+${name}
+${address}`
       );
 
-      const mailtoLink = `mailto:citycouncil@example.com?subject=${subject}&body=${body}`;
+      const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${subject}&body=${body}`;
 
-      window.location.href = mailtoLink;
+      window.open(gmailLink, '_blank');
     });
   </script>
 </body>
