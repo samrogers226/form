@@ -1,35 +1,117 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Mailto Form</title>
+  <meta charset="UTF-8">
+  <title>Opposition Email Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f8fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px 20px;
+      background-color: #0056b3;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #004494;
+    }
+
+    .footer-note {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
-  <h2>Contact Form</h2>
-  <form id="contactForm">
-    <label for="name">Name:</label><br />
-    <input type="text" id="name" name="name" required /><br /><br />
+  <div class="container">
+    <h1>Voice your opposition to the shelter at 81 S Huntington. Fill out the form below to generate an email template for you to send to city officials.</h1>
 
-    <label for="email">Email:</label><br />
-    <input type="email" id="email" name="email" required /><br /><br />
+    <form id="contactForm">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required />
 
-    <label for="address">Address:</label><br />
-    <textarea id="address" name="address" required></textarea><br /><br />
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" required />
 
-    <button type="submit">Send Email</button>
-  </form>
+      <label for="address">Your Address</label>
+      <textarea id="address" name="address" required></textarea>
+
+      <button type="submit">Generate Email</button>
+    </form>
+
+    <div class="footer-note">
+      This will open your email client with a prefilled message you can review before sending.
+    </div>
+  </div>
 
   <script>
     document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault(); // Prevent actual form submission
+      e.preventDefault();
 
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const address = document.getElementById('address').value;
 
-      const subject = encodeURIComponent(`Contact Form Submission from ${name}`);
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nAddress:\n${address}`);
+      const subject = encodeURIComponent(`Opposition to Shelter at 81 S Huntington`);
+      const body = encodeURIComponent(
+        `Dear City Officials,\n\n` +
+        `My name is ${name}, I live at ${address} and my email is ${email}.\n\n` +
+        `I am writing to voice my opposition to the proposed shelter at 81 S Huntington. I have serious concerns about the impact this project will have on our neighborhood.\n\n` +
+        `Sincerely,\n${name}`
+      );
 
-      const mailtoLink = `mailto:youremail@example.com?subject=${subject}&body=${body}`;
+      const mailtoLink = `mailto:citycouncil@example.com?subject=${subject}&body=${body}`;
 
       window.location.href = mailtoLink;
     });
